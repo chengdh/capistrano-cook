@@ -41,7 +41,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     desc "Create user and database for the application"
     task :create_database, :roles => :db do
       run %Q{mysql -u root --password=#{db_root_password} -e "create user '#{db_user}'@'#{db_host}' identified by '#{db_password}';"}
-      run %Q{mysql -u root --password=#{db_root_password} -e "CREATE DATABASE #{db_name};"}
+      run %Q{mysql -u root --password=#{db_root_password} -e "CREATE DATABASE #{db_name} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"}
       run %Q{mysql -u root --password=#{db_root_password} -e "GRANT ALL PRIVILEGES ON *.* TO '#{db_user}'@'#{db_host}'"}
     end
 
