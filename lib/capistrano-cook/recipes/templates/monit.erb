@@ -1,5 +1,5 @@
 <% unicorn_workers.times do |i| %>
-check process unicorn_worker_<%= i %>
+  check process unicorn_worker_<%= application%>_<%= i %>
     with pidfile <%= shared_path %>/pids/unicorn.<%= i %>.pid
     start program = "/bin/cat /dev/null"
     stop program = "/bin/bash -c 'kill -s QUIT `cat <%= shared_path %>/pids/unicorn.<%= i %>.pid`'"
